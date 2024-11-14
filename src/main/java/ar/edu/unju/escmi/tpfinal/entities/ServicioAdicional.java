@@ -25,6 +25,10 @@ public class ServicioAdicional {
 	    this.estado = true;
 	}
 	
+	public ServicioAdicional(int i, String string, double d, boolean b) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Long getId() {
 		return id;
 	}

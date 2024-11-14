@@ -17,7 +17,17 @@ public class ServicioAdicionalDaoImp implements IServicioAdicionalDao{
 	public void guardarServicio(ServicioAdicional servicio) {
 		try {
 			manager.getTransaction().begin();
-			manager.persist(servicio);
+			
+			ServicioAdicional servicio1 = new ServicioAdicional(1, "Cámara 360", 20000.0, true);
+	        ServicioAdicional servicio2 = new ServicioAdicional(2, "Cabina de fotos", 15000.0, true);
+	        ServicioAdicional servicio3 = new ServicioAdicional(3, "Filmación", 25000.0, true);
+	        ServicioAdicional servicio4 = new ServicioAdicional(4, "Pintacaritas", 8000.0, true);			
+			
+			manager.merge(servicio1);
+			manager.merge(servicio2);
+			manager.merge(servicio3);
+			manager.merge(servicio4);
+			
 			manager.getTransaction().commit();
 		} catch (Exception e) {
 			manager.getTransaction().rollback();
