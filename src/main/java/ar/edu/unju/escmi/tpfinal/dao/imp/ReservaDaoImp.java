@@ -3,8 +3,10 @@ package ar.edu.unju.escmi.tpfinal.dao.imp;
 
 import ar.edu.unju.escmi.tpfinal.config.EmfSingleton;
 import ar.edu.unju.escmi.tpfinal.dao.IReservaDao;
+import ar.edu.unju.escmi.tpfinal.entities.Cliente;
 import ar.edu.unju.escmi.tpfinal.entities.Reserva;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import java.time.LocalDate;
@@ -77,6 +79,16 @@ public class ReservaDaoImp implements IReservaDao {
         query.setParameter("clienteId", clienteId);
         return query.getResultList();
     }
+    
+    @Override
+	public void mostrarTodosLasReservas() {
+		TypedQuery<Reserva> query = manager.createQuery("SELECT e FROM Reserva e",Reserva.class );
+		@SuppressWarnings("unchecked")
+		List<Reserva> reservas = query.getResultList();
+		for(Reserva reser : reservas) {
+			reser.mostrarDatos();
+		}
+	}
 
     @Override
     public boolean existeReservaEnFechaYHorario(Long salonId, LocalDate fecha, String horaInicio, String horaFin) {

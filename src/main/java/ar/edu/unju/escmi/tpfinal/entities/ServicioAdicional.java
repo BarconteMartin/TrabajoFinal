@@ -15,18 +15,22 @@ public class ServicioAdicional {
 	
 	@Column(nullable = false)
 	private double precio;
-	 
+	
+	@Column(nullable = false)
 	private boolean estado;
 	
 	@ManyToMany(mappedBy = "serviciosAdicionales")
 	private List<Reserva> reservas;
 	
 	public ServicioAdicional() {
-	    this.estado = true;
-	}
+        this.estado = true; // Valor predeterminado
+    }
 	
-	public ServicioAdicional(int i, String string, double d, boolean b) {
-		// TODO Auto-generated constructor stub
+	public ServicioAdicional(Long id, String descripcion, double precio, boolean estado) {
+		this.id = id;
+	    this.descripcion = descripcion;
+	    this.precio = precio;
+	    this.estado = estado;
 	}
 
 	public Long getId() {

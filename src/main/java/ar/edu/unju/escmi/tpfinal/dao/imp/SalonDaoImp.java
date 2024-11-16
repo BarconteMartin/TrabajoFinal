@@ -33,7 +33,8 @@ public class SalonDaoImp implements ISalonDao{
 	        try {
 	          
 	            manager.getTransaction().begin();
-
+	            
+	           
 	            Salon salon1 = new Salon(1L, "Cosmos", 60, 5000.0, false);
 	            Salon salon2 = new Salon(2L, "Esmeralda", 20, 3000.0, false);
 	            Salon salon3 = new Salon(3L, "Galaxy", 100, 8000.0, true);  //

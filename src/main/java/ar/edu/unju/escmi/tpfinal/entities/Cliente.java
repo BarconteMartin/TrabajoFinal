@@ -26,7 +26,7 @@ public class Cliente {
 	@Column(name = "cliente_apellido")
 	private String apellido;
 
-	@OneToMany(mappedBy = "clientes", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
 	private List<Reserva> reservas;
 	
 	@Column(name = "cliente_domicilio")
@@ -35,7 +35,7 @@ public class Cliente {
 	@Column(name = "cliente_telefono")
 	private int telefono;
 	
-	@Column(name = "cliente_dni")
+	@Column(name = "cliente_dni", unique = true)
 	private int dni;
 	
 	@Column(name = "cliente_estado")
@@ -107,11 +107,13 @@ public class Cliente {
 	}
 
 	public void mostrarClientes() {
-		System.out.println("\nCliente: " + id);
-		System.out.println("Nombre del cliente: " + apellido + ", " + nombre);
+		System.out.println("\nID del Cliente: " + id);
+		System.out.println("Nombre del cliente: " + nombre);
+		System.out.println("Apellido del cliente: " + apellido);
 		System.out.println("DNI: " + dni);
 		System.out.println("Domicilio: " + domicilio);
 		System.out.println("Telefono: " + telefono);
 		System.out.println("Estado: " + (estado ? "Activo" : "Inactivo"));
+		System.out.println("-------------------------------------------");
 	}
 }

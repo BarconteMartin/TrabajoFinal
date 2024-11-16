@@ -1,5 +1,6 @@
 package ar.edu.unju.escmi.tpfinal.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -33,7 +34,7 @@ public class Salon {
 	private List<Reserva> reservas;
 	
 	@Column(name = "salon_pileta")
-	private boolean conPileta;
+	private boolean conPileta = true;
 	
 	
 	public Salon(Long id, String nombre, int capacidad, double precio, boolean conPileta) {
@@ -42,6 +43,7 @@ public class Salon {
         this.capacidad = capacidad;
         this.precio = precio;
         this.conPileta = conPileta;
+        this.reservas = new ArrayList<>();
     }
 
 	
@@ -92,5 +94,6 @@ public class Salon {
 		System.out.println("Capacidad: " + capacidad);
 		System.out.println("Precio " + precio);
 		System.out.println("Con pileta: " + (conPileta ? "Sí" : "No"));
+		System.out.println("-------------------------------------------");
 	}
 }

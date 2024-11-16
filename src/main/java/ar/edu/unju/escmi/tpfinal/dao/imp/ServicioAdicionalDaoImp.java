@@ -3,10 +3,12 @@ package ar.edu.unju.escmi.tpfinal.dao.imp;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import ar.edu.unju.escmi.tpfinal.config.EmfSingleton;
 import ar.edu.unju.escmi.tpfinal.dao.IServicioAdicionalDao;
+import ar.edu.unju.escmi.tpfinal.entities.Salon;
 import ar.edu.unju.escmi.tpfinal.entities.ServicioAdicional;
 
 public class ServicioAdicionalDaoImp implements IServicioAdicionalDao{
@@ -14,14 +16,14 @@ public class ServicioAdicionalDaoImp implements IServicioAdicionalDao{
 	private static EntityManager manager = EmfSingleton.getInstance().getEmf().createEntityManager();
 	
 	@Override
-	public void guardarServicio(ServicioAdicional servicio) {
+	public void guardarServicio() {
 		try {
 			manager.getTransaction().begin();
 			
-			ServicioAdicional servicio1 = new ServicioAdicional(1, "Cámara 360", 20000.0, true);
-	        ServicioAdicional servicio2 = new ServicioAdicional(2, "Cabina de fotos", 15000.0, true);
-	        ServicioAdicional servicio3 = new ServicioAdicional(3, "Filmación", 25000.0, true);
-	        ServicioAdicional servicio4 = new ServicioAdicional(4, "Pintacaritas", 8000.0, true);			
+			ServicioAdicional servicio1 = new ServicioAdicional(1L, "Cámara 360", 20000.0, true);
+	        ServicioAdicional servicio2 = new ServicioAdicional(2L, "Cabina de fotos", 15000.0, true);
+	        ServicioAdicional servicio3 = new ServicioAdicional(3L, "Filmación", 25000.0, true);
+	        ServicioAdicional servicio4 = new ServicioAdicional(4L, "Pintacaritas", 8000.0, true);			
 			
 			manager.merge(servicio1);
 			manager.merge(servicio2);
@@ -47,6 +49,15 @@ public class ServicioAdicionalDaoImp implements IServicioAdicionalDao{
 		}
 	}
 
+	@Override
+	public void mostrarTodosLosServiciosAdicionales() {
+		Query query = manager.createQuery("SELECT e FROM ServicioAdicional e",ServicioAdicional.class);
+		@SuppressWarnings("unchecked")
+		List<ServicioAdicional> servAdicional = query.getResultList();
+		for(ServicioAdicional servA: servAdicional) {
+			servA.mostrarDatos();
+		}
+	}
 	@Override
 	public void eliminarServicioLogicamente(Long id) {
 		try {
